@@ -1,2 +1,2 @@
-# notes
-Open personal notes about code
+# Notes
+**Open personal notes about code**
