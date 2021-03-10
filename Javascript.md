@@ -1,7 +1,5 @@
 # Javascript
 
-[[_TOC_]]
-
 ## Variables
 
 ### [var](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var)
