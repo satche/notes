@@ -1,6 +1,6 @@
 # Javascript
 
-[[TOC]]
+[[_TOC_]]
 
 ## Variables
 
