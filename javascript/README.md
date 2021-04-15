@@ -1,7 +1,9 @@
 # Javascript
-__A set of javascript notes, tips, tricks and general cheatsheet__
+
+**A set of javascript notes, tips, tricks and general cheatsheet**
 
 ## Table of content
-* [Arrays](arrays.md)
-* [Objects](objects.md)
-* [Variables](variables.md)
+
+- [Arrays](arrays.md)
+- [Objects](objects.md)
+- [Variables](variables.md)
