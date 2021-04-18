@@ -1,6 +1,6 @@
 # Javascript
 
-**A set of javascript notes, tips, tricks and general cheatsheet**
+_A set of javascript notes, tips, tricks and general cheatsheet_
 
 ## Table of content
 
