@@ -10,7 +10,7 @@ _A set of Laravel notes, tips, tricks and general cheatsheet_
 
 ## Table of content
 
-- [Installation / getting started](#init.md)
+- [Installation / getting started](#installation.md)
 - [Blade templating](#blade.md)
 
 ## Official documentation links
