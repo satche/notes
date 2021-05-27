@@ -17,4 +17,13 @@ let key = foo;
 let obj = { [key]: bar }; // {foo: bar}
 ```
 
-## Maps
+## Methods
+
+## Object.keys
+
+_Get keys of object_
+
+```javascript
+const obj = { a: foo, b: bar };
+Object.key(obj); // ["a", "b"]
+```
