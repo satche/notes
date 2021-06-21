@@ -15,12 +15,11 @@ _Two references are linked to the same value_
 let array1 = array2; // create alias
 ```
 
-_Clone array with map or with [spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)_
+_[Spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)_
 
 ```javascript
-let array2 = array1.map();
-// or
-let array1 = [...array2];
+let array1 = [1, 2];
+let array2 = [...array1, 3, 4]; // [1,2,3,4]
 ```
 
 ## Methods
@@ -31,7 +30,7 @@ _Create new array with all elements that pass the test (the function in argument
 
 ```javascript
 let array1 = [1, 2, 3];
-let array2 = array1.filter(item => item < 3); // [1, 2]
+let array2 = array1.filter(element => element < 3); // [1, 2]
 ```
 
 ### [`array.map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
@@ -40,17 +39,16 @@ _Run a given function on each item of an array_
 
 ```javascript
 let array1 = [1, 2, 3];
-let array2 = array1.map(item => item * 2); // [2, 4, 6]
+let array2 = array1.map(element => element * 2); // [2, 4, 6]
 ```
 
-_Redefine object_
+_Define object_
 
 ```javascript
-let data = { a: foo, b: bar };
-data = data.map(item => ({
-	hello: item.a,
-	world: item.b,
-})); // { hello: foo, world: bar }
+let array1 = ["a", "b", "c"];
+let array2 = array.map((element, index) => ({
+	[index]: element,
+})); // [{0:a} {1:b} {2:c}]
 ```
 
 ### [`array.reduce()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) / [`array.reduceRight()`](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/ReduceRight)
