@@ -57,9 +57,11 @@ const app = createApp(Component).mount("#app");
 ```html
 <template> {{ msg }} </template>
 <script>
-	setup() {
-		const msg = "hello";
-		return { msg };
-	},
+	export default {
+		setup() {
+			const msg = "hello";
+			return { msg };
+		},
+	};
 </script>
 ```

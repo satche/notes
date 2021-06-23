@@ -11,37 +11,9 @@ _A set of VueJS notes, tips, tricks and general cheatsheet_
 
 ## Table of content
 
-- [Installation / getting started](#init.md)
-
-## TMP (to sort)
-
-### [Reactivity](https://v3.vuejs.org/guide/reactivity.html#what-is-reactivity)
-
-`ref()`
-Wrap primitives in an object. Allows to track changes.
-
-`computed()`
-Allow to calculate propreties that depends on other propreties.
-
-```javascript
-let a = ref(1);
-console.log(a.value); // 1
-
-let b = computed(() => a.value + 2);
-console.log(b.value); // 3
-
-a = ref(3);
-console.log(b.value); // 5
-```
-
-_Define getter and setter_
-
-```javascript
-computed({
-	get: () => a.value + 2,
-	set: val => a.value = val,
-});
-```
+- [Installation / getting started](#installation.md)
+- [Reactivity](#reactivity.md)
+  - [`ref()`](<#reactivity.md#ref()>)
 
 ## TODO
 
