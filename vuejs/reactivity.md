@@ -11,7 +11,7 @@ console.log(a.value); // 1
 
 ## [`watch()`](https://v3.vuejs.org/guide/reactivity-computed-watchers.html#watch)
 
-Watch changes on a reactive variable (`ref()` object)
+Watch changes on reactive propreties (`ref()` object)
 
 ```javascript
 const a = ref(1);
@@ -22,7 +22,7 @@ a.value = 2;
 
 ## [`computed()`](https://v3.vuejs.org/guide/reactivity-computed-watchers.html#computed-values)
 
-Allow to calculate propreties that depends on other propreties.
+Allow to calculate reactive propreties (`ref()` object)
 
 ```javascript
 const a = ref(1);
@@ -32,6 +32,9 @@ a.value = 3;
 console.log(b.value); // 5
 ```
 
+_Note: Computed properties are cached based on their reactive dependencies. Avoid calculation in template or in methods since it will be re-run everytime a re-render happens. [Learn more](https://v3.vuejs.org/guide/computed.html#computed-caching-vs-methods)_
+
+
 Define getter and setter (WIP)
 
 ```javascript
@@ -40,3 +43,4 @@ computed({
 	set: val => (a.value = val),
 });
 ```
+
