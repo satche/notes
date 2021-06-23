@@ -4,9 +4,9 @@ _A set of Laravel notes, tips, tricks and general cheatsheet_
 
 **Version:** 8.x
 
-**Links**
+**Documentation**
 
-- [Official Documentation](https://laravel.com/docs/8.x)
+- [Laravel website](https://laravel.com/docs/8.x)
 
 ## Table of content
 
