@@ -11,9 +11,9 @@ _A set of VueJS notes, tips, tricks and general cheatsheet_
 
 ## Table of content
 
-- [Installation / getting started](#installation.md)
-- [Reactivity](#reactivity.md)
-  - [`ref()`](<#reactivity.md#ref()>)
+- [Installation / getting started](installation.md)
+- [Reactivity](reactivity.md)
+  - [`ref()`](<reactivity.md#ref()>)
 
 ## TODO
 
