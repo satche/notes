@@ -17,3 +17,5 @@ _Other links_
 
 - [Installation / getting started](installation.md)
 - [Reactivity](reactivity.md)
+- [Binding](binding.md)
+- [Components](components.md)

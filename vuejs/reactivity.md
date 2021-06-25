@@ -23,7 +23,7 @@ console.log(b.value); // 5
 
 _Note: Computed properties are cached based on their reactive dependencies. Operations in template or in methods will be re-run everytime a re-render happens, even if the output is still the same. [Learn more](https://v3.vuejs.org/guide/computed.html#computed-caching-vs-methods)_
 
-Define getter and setter (WIP)
+Define getter and setter for more control of the data.
 
 ```javascript
 computed({
