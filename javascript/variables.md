@@ -34,3 +34,17 @@ _Arrays can't be redefined, but its values can. To avoid this, use `Object.freez
 const array = [1, 2, 3];
 array[0] = 9; // [9,2,3]
 ```
+
+## Definition
+
+```javascript
+const func = () => {
+	const a = "a";
+	const b = "b";
+	return { a, b };
+};
+
+const { a: output } = func();
+
+console.log(output); // a
+```
