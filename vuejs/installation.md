@@ -59,7 +59,7 @@ const app = createApp(Component).mount("#app");
 <script>
 	export default {
 		setup() {
-			const msg = "hello";
+			const msg = "hello world";
 			return { msg };
 		},
 	};

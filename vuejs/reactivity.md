@@ -9,17 +9,6 @@ const a = ref(1);
 console.log(a.value); // 1
 ```
 
-## [`watch()`](https://v3.vuejs.org/guide/reactivity-computed-watchers.html#watch)
-
-Watch changes on reactive propreties (`ref()` object)
-
-```javascript
-const a = ref(1);
-watch(a, (newValue, oldValue) => console.log(`${oldValue} => ${newValue}`));
-a.value = 2;
-// 1 => 2
-```
-
 ## [`computed()`](https://v3.vuejs.org/guide/reactivity-computed-watchers.html#computed-values)
 
 Allow to calculate reactive propreties (`ref()` object)
@@ -32,8 +21,7 @@ a.value = 3;
 console.log(b.value); // 5
 ```
 
-_Note: Computed properties are cached based on their reactive dependencies. Avoid calculation in template or in methods since it will be re-run everytime a re-render happens. [Learn more](https://v3.vuejs.org/guide/computed.html#computed-caching-vs-methods)_
-
+_Note: Computed properties are cached based on their reactive dependencies. Operations in template or in methods will be re-run everytime a re-render happens, even if the output is still the same. [Learn more](https://v3.vuejs.org/guide/computed.html#computed-caching-vs-methods)_
 
 Define getter and setter (WIP)
 
@@ -44,3 +32,27 @@ computed({
 });
 ```
 
+## [`watch()`](https://v3.vuejs.org/guide/reactivity-computed-watchers.html#watch) / [`watchEffect()`](https://v3.vuejs.org/guide/reactivity-computed-watchers.html#watcheffect)
+
+Watch changes on reactive propreties (`ref()` object) and runs a given function right after.
+
+```javascript
+const a = ref(1);
+watchEffect(() => console.log(a.value));
+a.value = 2;
+a.value = 3;
+// 1
+// 3
+```
+
+Use `watch()` to be more specific and handle old value
+
+```javascript
+const a = ref(1);
+watch(a, (newValue, oldValue) => console.log(`${oldValue} => ${newValue}`));
+a.value = 2;
+a.value = 3;
+// 1 => 3
+```
+
+_Note: `watch()` handle side effect lazily. That means, if value end to be the same at the end of the execution, nothing is run. On the other hand, `watchEffect()` will re-run the function even if value stay the same_
