@@ -1,18 +1,23 @@
 # [Components](https://v3.vuejs.org/guide/component-basics.html)
 
+_Inside a component, directives notation change:_
+
+- Prop `value` become `modelValue`
+- Event `input` become `update:modelValue`
+
 ## Initialisation
 
 ```html
 <template>
-	<input-text></input-text>
+  <input-text />
 </template>
 
 <script>
-	import InputText from "./components/InputText.vue";
+  import InputText from "./components/InputText.vue";
 
-	export default {
-		components: { InputText },
-	};
+  export default {
+    components: { InputText },
+  };
 </script>
 ```
 
@@ -22,20 +27,20 @@ Component proprieties. Allow the parent component/element to parse data to child
 
 ```html
 <template>
-	<h1>{{ title }}</h1>
-	<span>{{ msgTitle }}</span>
+  <h1>{{ title }}</h1>
+  <span>{{ msgTitle }}</span>
 </template>
 
 <script>
-	export default {
-		props: {
-			title: { type: String },
-		},
-		setup(props) {
-			const msgTitle = "Welcome to " + props.title;
-			return { msgTitle };
-		},
-	};
+  export default {
+    props: {
+      title: { type: String },
+    },
+    setup(props) {
+      const msgTitle = "Welcome to " + props.title;
+      return { msgTitle };
+    },
+  };
 </script>
 ```
 
@@ -43,55 +48,53 @@ Then pass the prop in parent component: `<component title='Homepage'></component
 
 **WIP: provide/inject, allow to parse data to a grandchild component**
 
-## [Emit](https://v3.vuejs.org/guide/migration/emits-option.html#overview)
+## [Emit](https://v3.vuejs.org/guide/migration/emits-option.html#overview)
 
 Emit events. Allow a parent component to get data from a child component.
 
 ```html
-<!-- Child component -->
+<!-- Parent component -->
 <template>
-	<input type="text" v-model="emitValue" />
+  <input-text :value="outputValue" v-model="outputValue" />
+  {{ outputValue }}
 </template>
 
 <script>
-	import { ref, computed } from "vue";
+  import { ref } from "vue";
+  import InputText from "./InputText.vue";
 
-	export default {
-		emits: ["update:value"],
-		setup(props, context) {
-			const inputValue = ref("");
-			const emitValue = computed({
-				get: () => inputValue.value,
-				set: val => context.emit("update:value", val),
-			});
-			return { emitValue };
-		},
-	};
+  export default {
+    components: { InputText },
+    setup() {
+      const outputValue = ref("");
+      return { outputValue };
+    },
+  };
 </script>
 ```
 
 ```html
-<!-- Parent component -->
+<!-- Child component -->
 <template>
-	<input-text @update:value="updateValue = $event"></input-text>
-	{{ outputValue }}
+  <input type="text" v-model="inputValue" />
 </template>
 
 <script>
-	import { ref, computed } from "vue";
-	import InputText from "./components/InputText.vue";
+  import { computed } from "vue";
 
-	export default {
-		components: { InputText },
-		setup() {
-			const outputValue = ref("");
-			const updateValue = computed({
-				get: () => value.value,
-				set: val => (value.value = val),
-			});
-			const log = event => console.log(event);
-			return { log, outputValue, updateValue };
-		},
-	};
+  export default {
+    props: {
+      value: { String },
+    },
+    setup(props, context) {
+      const inputValue = computed({
+        get: () => props.value,
+        set: (val) => context.emit("update:value", val),
+      });
+      return { inputValue };
+    },
+  };
 </script>
 ```
+
+_Note: In component, `v-model="outputValue"` become the shorthand for `:modelValue="outputValue" @update:modelValue="outputValue = $event"`_
