@@ -2,40 +2,9 @@
 
 ## Two-way binding
 
-Two-way binding is a simple way to link the value from the getter and the setter.
-
 ```html
 <template>
-	<input :value="msg" @input="updateMsg = $event.target.value" />
-	{{ msg }}
-</template>
-
-<script>
-	import { ref, computed } from "vue";
-	export default {
-		setup() {
-			const msg = ref("hello");
-			const updateMsg = computed({
-				get: () => msg.value,
-				set: val => (msg.value = val),
-			});
-			return { msg, updateMsg };
-		},
-	};
-</script>
-```
-
-_`@input="searchText = $event.target.value"` call the setter method `set()`_
-
-_`:value="searchText"` call the getter method `get()`_
-
-### [`v-model`](https://v3.vuejs.org/guide/migration/v-model.html)
-
-_Shorthand for two-way binding value._
-
-```html
-<template>
-	<input v-model="msg" />
+	<input :value="msg" @input="msg = $event.target.value" />
 	{{ msg }}
 </template>
 
@@ -49,3 +18,35 @@ _Shorthand for two-way binding value._
 	};
 </script>
 ```
+
+**Shorthand**
+
+```html
+<input v-model="msg" />
+<!-- …is the shorthand for: -->
+<input :value="msg" @input="msg = $event.target.value" />
+```
+
+Do operation with `computed()`
+
+```html
+<template>
+	<input v-model="msg" />
+	{{ detailMsg }}
+</template>
+
+<script>
+	import { ref, computed } from "vue";
+	export default {
+		setup() {
+			const msg = ref("hello");
+			const detailMsg = computed(() => "message: " + msg.value);
+			return { msg, detailMsg };
+		},
+	};
+</script>
+```
+
+_`@input="searchText = $event.target.value"` call the setter method `set()`_
+
+_`:value="searchText"` call the getter method `get()`_
