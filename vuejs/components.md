@@ -5,7 +5,7 @@ _Inside a component, directives notation change:_
 -  Prop `value` become `modelValue`
 -  Event `input` become `update:modelValue`
 
-## Initialisation
+## [Initialisation](https://v3.vuejs.org/guide/component-basics.html)
 
 ```html
 <template>
