@@ -6,4 +6,5 @@ _A set of javascript notes, tips, tricks and general cheatsheet_
 
 - [Arrays](arrays.md)
 - [Objects](objects.md)
+- [Promise](promise.md)
 - [Variables](variables.md)
