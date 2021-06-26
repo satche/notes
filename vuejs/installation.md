@@ -40,7 +40,7 @@ $ npm install
 $ npm run dev
 ```
 
-# [Initalisation](https://v3.vuejs.org/guide/introduction.html#what-is-vue-js)
+# [Getting started](https://v3.vuejs.org/guide/introduction.html#what-is-vue-js)
 
 **Quick Hello World**
 
