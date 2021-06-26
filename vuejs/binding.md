@@ -31,7 +31,7 @@ Do operation with `computed()`
 
 ```html
 <template>
-	<input v-model="msg" />
+	<input :value="msg" @input="msg = $event.target.value" />
 	{{ detailMsg }}
 </template>
 
@@ -40,13 +40,16 @@ Do operation with `computed()`
 	export default {
 		setup() {
 			const msg = ref("hello");
-			const detailMsg = computed(() => "message: " + msg.value);
+			const detailMsg = computed({
+				get: () => "message: " + msg.value,
+				set: val => (msg.value = val),
+			});
 			return { msg, detailMsg };
 		},
 	};
 </script>
 ```
 
-_`@input="searchText = $event.target.value"` call the setter method `set()`_
+_`@input="msg = $event.target.value"` call the setter method `set()`_
 
-_`:value="searchText"` call the getter method `get()`_
+_`:value="msg"` call the getter method `get()`_
