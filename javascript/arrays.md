@@ -45,7 +45,7 @@ let array2 = [3, 4];
 let arrayMerged = array.concat(array2); // [1,2,3,4]
 ```
 
-#### [`array.join()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join)
+#### [`array.join()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join)
 
 Join element of an array and return a string
 
@@ -88,7 +88,7 @@ let arrayFilterd = array1.filter((element) => element < 3); // [1, 2]
 
 ### Do operation on stuff
 
-#### [`array.find()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find) / [`array.findIndex()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex)
+#### [`array.find()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find) / [`array.findIndex()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex)
 
 Find elements and return the first one.
 
