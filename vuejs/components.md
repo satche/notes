@@ -25,7 +25,43 @@ _Inside a component, directives notation change:_
 
 Component proprieties. Allow the parent component/element to parse data to child components.
 
+```javascript
+props: {
+   title: {
+      type: String,
+      required: true,
+      default: "hello world"
+   }
+}
+```
+
+<details>
+
+<summary>Quick example</summary>
+
 ```html
+<!-- Parent component -->
+<template>
+   <component title="Homepage"></component>
+   <component :title="content"></component>
+</template>
+
+<script>
+   import Component from "./Component.vue";
+   export default {
+      components: {
+         Component,
+      },
+      setup() {
+         const content = "Hello world";
+         return { content };
+      },
+   };
+</script>
+```
+
+```html
+<!-- Child component -->
 <template>
    <h1>{{ title }}</h1>
    <span>{{ msgTitle }}</span>
@@ -33,9 +69,7 @@ Component proprieties. Allow the parent component/element to parse data to child
 
 <script>
    export default {
-      props: {
-         title: { type: String },
-      },
+      props: ["title"],
       setup(props) {
          const msgTitle = "Welcome to " + props.title;
          return { msgTitle };
@@ -44,7 +78,53 @@ Component proprieties. Allow the parent component/element to parse data to child
 </script>
 ```
 
-Then pass the prop in parent component: `<component title='Homepage'></component>`
+</details>
+
+<details>
+
+<summary>Pass object to props</summary>
+
+```html
+<!-- Parent component -->
+<template>
+   <post v-bind:title="post.title" v-bind:msg="post.msg"></post>
+   <!-- shorthand: v-bind="post" -->
+</template>
+
+<script>
+   import Post from "./Post.vue";
+   export default {
+      components: {
+         Post,
+      },
+      setup() {
+         const post = {
+            title: "Hello",
+            msg: "How are you ?",
+         };
+         return { post };
+      },
+   };
+</script>
+```
+
+```html
+<!-- Child component -->
+<template>
+   <h1>{{ title }}</h1>
+   <p>{{ msg }}</p>
+</template>
+
+<script>
+   export default {
+      props: ["title", "msg"],
+   };
+</script>
+```
+
+</details>
+
+<hr>
 
 ## [Emit](https://v3.vuejs.org/guide/migration/emits-option.html#overview)
 
