@@ -57,7 +57,7 @@ Emit events. Allow a parent component to get data from a child component.
 ```html
 <!-- Parent component -->
 <template>
-   <input-text @update-statut="statut = $event" />
+   <input-text @update:statut="statut = $event" />
    {{ statut }}
 </template>
 
@@ -78,13 +78,14 @@ Emit events. Allow a parent component to get data from a child component.
 ```html
 <!-- Child component -->
 <template>
-   <input @input="$emit('updateStatut', statut)" />
+   <input @input="$emit('update:statut', statut)" />
 </template>
 
 <script>
    export default {
+      emits: ["update:statut"]
       setup() {
-         const statut = Triggerd;
+         const statut = "Triggerd";
          return { statut };
       },
    };
@@ -101,15 +102,16 @@ Emit events. Allow a parent component to get data from a child component.
 <!-- Parent component -->
 <template>
    <input-text
-      :model-value="outputValue"
-      @update:model-value="outputValue = $event"
-   />
+      :value="outputValue"
+      @update:modelValue="outputValue = $event"
+   ></input-text>
+   <!-- shorthand: v-model="outputValue" -->
    {{ outputValue }}
 </template>
 
 <script>
    import { ref } from "vue";
-   import InputText from "./InputPrecise.vue";
+   import InputText from "./InputSimple.vue";
 
    export default {
       components: { InputText },
@@ -126,16 +128,22 @@ _Note: v-model can be used as shorthand: `<input-text v-model='outputValue'>`. [
 ```html
 <!-- Child component -->
 <template>
-   <input
-      :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"
-   />
+   <input :value="modelValue" @input="modelValue = $event.target.value" />
+   <!-- <input type="text" v-model="modelValue" /> -->
 </template>
 
 <script>
+   import { computed } from "vue";
    export default {
       props: ["modelValue"],
       emits: ["update:modelValue"],
+      setup(props, context) {
+         const modelValue = computed({
+            get: () => props.modelValue,
+            set: (val) => context.emit("update:modelValue", val),
+         });
+         return { modelValue };
+      },
    };
 </script>
 ```
@@ -150,6 +158,7 @@ _Note: v-model can be used as shorthand: `<input-text v-model='outputValue'>`. [
 <!-- Parent component -->
 <template>
    <input-text :label="outputValue" @update:label="outputValue = $event" />
+   <!-- shorthand: v-model:label='outputValue' -->
    {{ outputValue }}
 </template>
 
@@ -166,8 +175,6 @@ _Note: v-model can be used as shorthand: `<input-text v-model='outputValue'>`. [
    };
 </script>
 ```
-
-_Note: v-model can be used as shorthand: `<input-text v-model:label='outputValue'>`. [Learn more](https://v3.vuejs.org/guide/component-basics.html#using-v-model-on-components)_
 
 ```html
 <!-- Child component -->
