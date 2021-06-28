@@ -86,6 +86,17 @@ let array1 = [1, 2, 3];
 let arrayFilterd = array1.filter((element) => element < 3); // [1, 2]
 ```
 
+### Verifiy stuff
+
+#### [`array.includes()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes)
+
+Check if an array include a value
+
+```javascript
+let array = [1, 2, 3];
+let condition = array.includes(1); // true
+```
+
 ### Do operation on stuff
 
 #### [`array.find()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find) / [`array.findIndex()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex)
