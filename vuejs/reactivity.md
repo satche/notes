@@ -1,12 +1,22 @@
 # [Reactivity](https://v3.vuejs.org/guide/reactivity.html#what-is-reactivity)
 
-## [`ref()`](https://v3.vuejs.org/guide/composition-api-introduction.html#reactive-variables-with-ref)
+## [`ref()`](https://v3.vuejs.org/guide/composition-api-introduction.html#reactive-variables-with-ref) / [`reactive()`](https://v3.vuejs.org/api/basic-reactivity.html#reactive)
 
-Reference. Encapsulate primitive in an object. Allows to track changes. Value given to the ref shouldn't be redefined (use of `const`)
+Reference. Encapsulate primitive (number, string, …) in an object. Allows to track changes. Value given to the ref shouldn't be redefined (use of `const`)
 
 ```javascript
 const a = ref(1);
 console.log(a.value); // 1
+```
+
+Use `reactive()` to allow reactivity on objects
+
+```javascript
+const obj = reactive({
+   a: 1,
+   b: 2,
+});
+console.log(obj.a); // 1
 ```
 
 ## [`computed()`](https://v3.vuejs.org/guide/reactivity-computed-watchers.html#computed-values)
@@ -27,8 +37,8 @@ Define getter and setter for more control of the data.
 
 ```javascript
 computed({
-	get: () => a.value + 2,
-	set: val => (a.value = val),
+   get: () => a.value + 2,
+   set: (val) => (a.value = val),
 });
 ```
 
