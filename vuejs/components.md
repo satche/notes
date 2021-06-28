@@ -52,50 +52,6 @@ Emit events. Allow a parent component to get data from a child component.
 
 <details>
 
-<summary>Send data from child to parent</summary>
-
-```html
-<!-- Parent component -->
-<template>
-   <input-text @update:statut="statut = $event" />
-   {{ statut }}
-</template>
-
-<script>
-   import { ref } from "vue";
-   import InputText from "./InputText.vue";
-
-   export default {
-      components: { InputText },
-      setup() {
-         const statut = ref("(nothing)");
-         return { statut };
-      },
-   };
-</script>
-```
-
-```html
-<!-- Child component -->
-<template>
-   <input @input="$emit('update:statut', statut)" />
-</template>
-
-<script>
-   export default {
-      emits: ["update:statut"]
-      setup() {
-         const statut = "Triggerd";
-         return { statut };
-      },
-   };
-</script>
-```
-
-</details>
-
-<details>
-
 <summary>Send value from child's input to parent</summary>
 
 ```html
@@ -123,13 +79,11 @@ Emit events. Allow a parent component to get data from a child component.
 </script>
 ```
 
-_Note: v-model can be used as shorthand: `<input-text v-model='outputValue'>`. [Learn more](https://v3.vuejs.org/guide/component-basics.html#using-v-model-on-components)_
-
 ```html
 <!-- Child component -->
 <template>
    <input :value="modelValue" @input="modelValue = $event.target.value" />
-   <!-- <input type="text" v-model="modelValue" /> -->
+   <!-- shorthand: v-model="modelValue" -->
 </template>
 
 <script>
@@ -164,7 +118,7 @@ _Note: v-model can be used as shorthand: `<input-text v-model='outputValue'>`. [
 
 <script>
    import { ref } from "vue";
-   import InputText from "./InputPrecise.vue";
+   import InputText from "./InputText.vue";
 
    export default {
       components: { InputText },
@@ -179,16 +133,57 @@ _Note: v-model can be used as shorthand: `<input-text v-model='outputValue'>`. [
 ```html
 <!-- Child component -->
 <template>
-   <input
-      :value="modelLabel"
-      @input="$emit('update:modelLabel', $event.target.value)"
-   />
+   <input :value="label" @input="$emit('update:label', $event.target.value)" />
 </template>
 
 <script>
    export default {
-      props: ["modelLabel"],
-      emits: ["update:modelLabel"],
+      props: ["label"],
+      emits: ["update:label"],
+   };
+</script>
+```
+
+</details>
+
+<details>
+
+<summary>Use emit in template (not best practice)</summary>
+
+```html
+<!-- Parent component -->
+<template>
+   <input-text @update:statut="statut = $event" />
+   {{ statut }}
+</template>
+
+<script>
+   import { ref } from "vue";
+   import InputText from "./InputText.vue";
+
+   export default {
+      components: { InputText },
+      setup() {
+         const statut = ref("(nothing)");
+         return { statut };
+      },
+   };
+</script>
+```
+
+```html
+<!-- Child component -->
+<template>
+   <input @input="$emit('update:statut', statut)" />
+</template>
+
+<script>
+   export default {
+      emits: ["update:statut"],
+      setup() {
+         const statut = "Triggerd";
+         return { statut };
+      },
    };
 </script>
 ```
